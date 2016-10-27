@@ -19,7 +19,7 @@ button.onclick=function(){
         
     };
     
-    request.open('GET','http://krunal-desai.imad.hasura-app.io/counter',true);
+    request.open('GET','http://abhi1507.imad.hasura-app.io/counter',true);
     request.send(null);
     
 
@@ -68,7 +68,7 @@ var nameInput = document.getElementById('name');
 var game = nameInput.value;
     
 
-request.open('GET','http://krunal-desai.imad.hasura-app.io/submit-name?name=' + game,true);
+request.open('GET','http://abhi1507.imad.hasura-app.io/submit-name?name=' + game,true);
 request.send(null);
 
 };
