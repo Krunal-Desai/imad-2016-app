@@ -5,8 +5,10 @@ var path = require('path');
 var app = express();
 app.use(morgan('combined'));
 
+/*
 //Database set up
 var Pool = require('pg').Pool;
+
 
 var config = {
   
@@ -17,23 +19,8 @@ var config = {
   password: process.env.DB_PASSWORD
 };
 
-app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname, 'ui', 'index.html'));
-});
-
-app.get('/ui/style.css', function (req, res) {
-  res.sendFile(path.join(__dirname, 'ui', 'style.css'));
-});
-
-app.get('/ui/img/:articleName', function (req, res) {
-
-    var data = req.params.articleName;
-    
-    res.sendFile(path.join(__dirname, 'ui','img',data));
-});
 
 var pool = new Pool(config);
-/*
 app.get('/ui/img/:imgname', function (req, res) {
    
    pool.query("SELECT * FROM imagedata WHERE imagename = '$1'",[req.params.imgname],function(err,result){
@@ -58,6 +45,23 @@ app.get('/ui/img/:imgname', function (req, res) {
    });
 });
 */
+
+
+app.get('/', function (req, res) {
+  res.sendFile(path.join(__dirname, 'ui', 'index.html'));
+});
+
+app.get('/ui/style.css', function (req, res) {
+  res.sendFile(path.join(__dirname, 'ui', 'style.css'));
+});
+
+app.get('/ui/img/:articleName', function (req, res) {
+
+    var data = req.params.articleName;
+    
+    res.sendFile(path.join(__dirname, 'ui','img',data));
+});
+
 
 var port = 8080; // Use 8080 for local development because you might already have apache running on 80
 app.listen(8080, function () {
