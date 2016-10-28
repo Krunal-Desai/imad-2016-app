@@ -21,7 +21,7 @@ app.get('/ui/img/:articleName', function (req, res) {
 
     var data = req.params.articleName;
     
-    res.send(data.toString());
+    res.sendFile(path.join(__dirname, 'ui','img', 'data'));
 });
 
 
