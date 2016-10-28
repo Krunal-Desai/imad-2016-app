@@ -1,44 +1,42 @@
+//Requires to create NodeJs App
 var express = require('express');
+
+//Morgan Logger added
 var morgan = require('morgan');
+
+//countains the require path related modules
 var path = require('path');
 
+//Creates an Express application.
 var app = express();
+
+//This tells express to log via morgan
+//and morgan to log in the "combined" pre-defined format
 app.use(morgan('combined'));
 
-//Database set up
-var Pool = require('pg').Pool;
-
-var config = {
-  
-  user: 'krunal-desai',
-  database: 'krunal-desai',
-  host: 'db.imad.hasura-app.io',
-  port: '5432',
-  password: process.env.DB_PASSWORD
-};
-
+//Serves the main http://krunal-desai.imad.hasura-app.io/
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
 
-app.get('/ui/style.css', function (req, res) {
+//Serves styles.css file
+app.get('/style.css', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'style.css'));
 });
 
-app.get('/ui/madi.png', function (req, res) {
-  res.sendFile(path.join(__dirname, 'ui', 'madi.png'));
-});
+//serves require images
+/*
+app.get('/ui/img/:imgname', function (req, res) {
 
-app.get('/ui/img/:articleName', function (req, res) {
-
-    var data = req.params.articleName;
+    var data = req.params.imgname;
     
     res.sendFile(path.join(__dirname, 'ui','img',data));
 });
-
+*/
+/*
 var pool = new Pool(config);
 
-app.get('ui/img/:imgname', function (req, res) {
+app.get('/img/:imgname', function (req, res) {
    
    pool.query("SELECT * FROM imagedata WHERE imagename = '$1'",[req.params.imgname],function(err,result){
        
@@ -56,14 +54,17 @@ app.get('ui/img/:imgname', function (req, res) {
                     {
                         var imgNameData = result.rows[0];
                         
-                        res.sendFile(path.join(__dirname,'ui','img', imgNameData));
+                        res.sendFile(path.join(__dirname,'ui','img', 'imgNameData'));
                     }
       }
    });
 });
 
+*/
 
-var port = 8080; // Use 8080 for local development because you might already have apache running on 80
-app.listen(8080, function () {
+// Use 8080 for local development because you might already have apache running on 80
+var port = 8080; 
+app.listen(8080, function () 
+{
   console.log(`IMAD course app listening on port ${port}!`);
 });
