@@ -25,14 +25,14 @@ app.get('/style.css', function (req, res) {
 });
 
 //serves require images
-
+/*
 app.get('/ui/img/:imgname', function (req, res) {
 
     var data = req.params.imgname;
     
     res.sendFile(path.join(__dirname, 'ui','img',data));
 });
-
+*/
 /*
 var pool = new Pool(config);
 
