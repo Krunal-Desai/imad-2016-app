@@ -14,7 +14,7 @@ app.get('/style.css', function (req, res) {
 });
 
 app.get('/img/search.gif', function (req, res) {
-  res.sendFile(path.join(__dirname, 'ui',__dirname,'img', 'search.gif'));
+  res.sendFile(path.join(__dirname,'img', 'search.gif'));
 });
 
 
