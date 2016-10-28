@@ -29,12 +29,12 @@ app.get('/ui/madi.png', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'madi.png'));
 });
 
-app.get('/ui/img/:articleName', function (req, res) {
+/*app.get('/ui/img/:articleName', function (req, res) {
 
     var data = req.params.articleName;
     
     res.sendFile(path.join(__dirname, 'ui','img',data));
-});
+});*/
 
 var pool = new Pool(config);
 
