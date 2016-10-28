@@ -33,7 +33,7 @@ app.get('/ui/img/:imgname', function (req, res) {
     res.sendFile(path.join(__dirname, 'ui','img',data));
 });
 
-
+/*
 var pool = new Pool(config);
 
 app.get('/img/:imgname', function (req, res) {
@@ -60,7 +60,7 @@ app.get('/img/:imgname', function (req, res) {
    });
 });
 
-
+*/
 
 // Use 8080 for local development because you might already have apache running on 80
 var port = 8080; 
