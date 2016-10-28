@@ -38,7 +38,7 @@ app.get('/ui/madi.png', function (req, res) {
 
 var pool = new Pool(config);
 
-app.get('ui/img/:imgname', function (req, res) {
+app.get('/ui/img/:imgname', function (req, res) {
    
    pool.query("SELECT * FROM imagedata WHERE imagename = '$1'",[req.params.imgname],function(err,result){
        
