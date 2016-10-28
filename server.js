@@ -17,7 +17,7 @@ app.get('/img/:articleName', function (req, res) {
 
   var data = req.params.articleName;
 
-  res.sendFile(path.join(__dirname,'img',data));
+  res.sendFile(path.join(__dirname,'ui','img',data));
 });
 
 
