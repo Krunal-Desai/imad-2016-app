@@ -14,18 +14,6 @@ var app = express();
 //and morgan to log in the "combined" pre-defined format
 app.use(morgan('combined'));
 
-//Database set up
-var Pool = require('pg').Pool;
-
-var config = {
-  
-  user: 'krunal-desai',
-  database: 'krunal-desai',
-  host: 'db.imad.hasura-app.io',
-  port: '5432',
-  password: process.env.DB_PASSWORD
-};
-
 //Serves the main http://krunal-desai.imad.hasura-app.io/
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
@@ -37,11 +25,14 @@ app.get('/style.css', function (req, res) {
 });
 
 //serves require images
-/*
-app.get('/img/search.gif', function (req, res) {
-  res.sendFile(path.join(__dirname,'ui','img', 'search.gif'));
+
+app.get('/ui/img/:imgname', function (req, res) {
+
+    var data = req.params.imgname;
+    
+    res.sendFile(path.join(__dirname, 'ui','img',data));
 });
-*/
+
 
 var pool = new Pool(config);
 
