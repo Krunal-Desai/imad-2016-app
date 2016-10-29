@@ -5,19 +5,33 @@ var path = require('path');
 var app = express();
 app.use(morgan('combined'));
 
+//Index servent
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
 
-app.get('/style.css', function (req, res) {
-  res.sendFile(path.join(__dirname, 'ui', 'style.css'));
-});
+//Image Servent
+app.get('/assets/img/:image', function (req, res) {
 
-app.get('/assets/img/:articleName', function (req, res) {
-
-  var data = req.params.articleName;
+  var data = req.params.image;
 
   res.sendFile(path.join(__dirname,'ui','assets','img',data));
+});
+
+//Style Servent
+app.get('/assets/css/:css', function (req, res) {
+
+  var cssdata = req.params.css;
+
+  res.sendFile(path.join(__dirname,'ui','assets','css',cssdata));
+});
+
+//Script Servent
+app.get('/assets/js/:js', function (req, res) {
+
+  var jsdata = req.params.js;
+
+  res.sendFile(path.join(__dirname,'ui','assets','js',jsdata));
 });
 
 var port = 8080; // Use 8080 for local development because you might already have apache running on 80
