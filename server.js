@@ -11,13 +11,15 @@ app.get('/', function (req, res) {
 });
 
 //Image Servent
-app.get('/assets/img/:image', function (req, res) {
+app.get('/assets/:fold/:fd', function (req, res) {
 
-  var data = req.params.image;
+  var filedata = req.params.fd;
+  
+  var folderdata = req.params.fold
 
-  res.sendFile(path.join(__dirname,'ui','assets','img',data));
+  res.sendFile(path.join(__dirname,'ui','assets',folderdata,filedata));
 });
-
+/*
 //Style Servent
 app.get('/assets/css/:css', function (req, res) {
 
@@ -41,6 +43,7 @@ app.get('/assets/font/:font', function (req, res) {
 
   res.sendFile(path.join(__dirname,'ui','assets','font',fontdata));
 });
+*/
 
 var port = 8080; // Use 8080 for local development because you might already have apache running on 80
 app.listen(8080, function () {
