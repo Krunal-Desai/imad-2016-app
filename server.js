@@ -31,8 +31,7 @@ var path = require('path');
 var app = express();
 app.use(morgan('combined'));
 
-function createTemplate(data)
-{
+/*function createTemplate(data){
     
 var date=data.date;
 var heading=data.heading;
@@ -72,14 +71,43 @@ var htmlTemplate=`
 `;
 
 return htmlTemplate;
-}
+}*/
 
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
 
-var pool = new Pool(config);
+app.get('/ui/style.css', function (req, res) {
+  res.sendFile(path.join(__dirname, 'ui', 'style.css'));
+});
 
+app.get('/ui/madi.png', function (req, res) {
+  res.sendFile(path.join(__dirname, 'ui', 'madi.png'));
+});
+
+app.get('/ui/main.js', function (req, res) {
+  res.sendFile(path.join(__dirname, 'ui', 'main.js'));
+});
+
+var counter = 0;
+app.get('/counter', function (req, res) {
+  
+  counter+=1;
+  res.send(counter.toString());
+});
+
+var names =[];
+app.get('/submit-name', function (req, res) {
+    
+    var name =req.query.name;
+    
+    names.push(name);
+    
+    res.send(JSON.stringify(names));
+});
+
+/*
+var pool = new Pool(config);
 app.get('/test-db', function (req, res) {
 
   pool.query('SELECT * FROM test',function(err,result){
@@ -95,24 +123,6 @@ app.get('/test-db', function (req, res) {
       }
       
   });
-});
-
-var counter = 0;
-
-app.get('/counter', function (req, res) {
-  
-  counter+=1;
-  res.send(counter.toString());
-});
-
-var names =[];
-app.get('/submit-name', function (req, res) {
-    
-    var name =req.query.name;
-    
-    names.push(name);
-    
-    res.send(JSON.stringify(names));
 });
 
 app.get('/articles/:articleName', function (req, res) {
@@ -139,21 +149,7 @@ app.get('/articles/:articleName', function (req, res) {
    });
 });
 
-
-
-app.get('/ui/main.js', function (req, res) {
-  res.sendFile(path.join(__dirname, 'ui', 'main.js'));
-});
-
-
-app.get('/ui/style.css', function (req, res) {
-  res.sendFile(path.join(__dirname, 'ui', 'style.css'));
-});
-
-app.get('/ui/madi.png', function (req, res) {
-  res.sendFile(path.join(__dirname, 'ui', 'madi.png'));
-});
-
+*/
 
 var port = 8080; 
 app.listen(8080, function () {
